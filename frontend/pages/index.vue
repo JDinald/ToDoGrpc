@@ -34,7 +34,7 @@
 
           <div v-if="editingTodo" class="form-group">
             <label class="form-label">Status</label>
-            <select v-model="formData.to_do_status" class="form-select">
+            <select v-model="formData.toDoStatus" class="form-select">
               <option value="NEW">New</option>
               <option value="INPROGRESS">In Progress</option>
               <option value="COMPLETED">Completed</option>
@@ -82,15 +82,15 @@
           v-for="todo in todos"
           :key="todo.id"
           class="todo-item"
-          :class="`status-${todo.to_do_status.toLowerCase()}`"
+          :class="`status-${todo.toDoStatus.toLowerCase()}`"
         >
           <div class="todo-header">
             <h3 class="todo-title">{{ todo.title }}</h3>
             <span
               class="status-badge"
-              :class="`status-${todo.to_do_status.toLowerCase()}`"
+              :class="`status-${todo.toDoStatus.toLowerCase()}`"
             >
-              {{ formatStatus(todo.to_do_status) }}
+              {{ formatStatus(todo.toDoStatus) }}
             </span>
           </div>
 
@@ -133,7 +133,7 @@ const editingTodo = ref<ToDoItem | null>(null)
 const formData = ref({
   title: '',
   description: '',
-  to_do_status: 'NEW'
+  toDoStatus: 'NEW'
 })
 
 // Load todos on mount
@@ -165,7 +165,7 @@ const handleCreate = async () => {
     })
 
     successMessage.value = 'Task created successfully!'
-    formData.value = { title: '', description: '', to_do_status: 'NEW' }
+    formData.value = { title: '', description: '', toDoStatus: 'NEW' }
 
     await loadTodos()
 
@@ -183,7 +183,7 @@ const startEdit = (todo: ToDoItem) => {
   formData.value = {
     title: todo.title,
     description: todo.description,
-    to_do_status: todo.to_do_status
+    toDoStatus: todo.toDoStatus
   }
 
   // Scroll to top
@@ -192,7 +192,7 @@ const startEdit = (todo: ToDoItem) => {
 
 const cancelEdit = () => {
   editingTodo.value = null
-  formData.value = { title: '', description: '', to_do_status: 'NEW' }
+  formData.value = { title: '', description: '', toDoStatus: 'NEW' }
 }
 
 const handleUpdate = async () => {
@@ -206,7 +206,7 @@ const handleUpdate = async () => {
       id: editingTodo.value.id,
       title: formData.value.title,
       description: formData.value.description,
-      to_do_status: formData.value.to_do_status
+      toDoStatus: formData.value.toDoStatus
     })
 
     successMessage.value = 'Task updated successfully!'

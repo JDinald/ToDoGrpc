@@ -2,7 +2,7 @@ export interface ToDoItem {
   id: number
   title: string
   description: string
-  to_do_status: 'NEW' | 'INPROGRESS' | 'COMPLETED'
+  toDoStatus: 'NEW' | 'INPROGRESS' | 'COMPLETED'
 }
 
 export interface CreateToDoRequest {
@@ -14,5 +14,5 @@ export interface UpdateToDoRequest {
   id: number
   title: string
   description: string
-  to_do_status: string
+  toDoStatus: string
 }
