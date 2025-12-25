@@ -14,7 +14,7 @@ This project demonstrates building a gRPC service with comprehensive CRUD functi
 * **JSON Transcoding**: Utilizes the JSON transcoding feature to transcode between gRPC and RESTful calls seamlessly
 * **Dual-Protocol Support**: Offers simultaneous support for both gRPC and REST clients, ensuring broad compatibility and accessibility
 * **Modern Frontend**: Nuxt 4 UI with dark green, dark, and gold theme for an elegant user experience
-* **Docker Support**: Frontend ready for containerized deployment with multi-stage builds
+* **Docker Support**: Frontend ready for containerized deployment with multi-stage builds using Node.js 22 Alpine
 * **CORS Enabled**: Configured to allow cross-origin requests from the frontend
 
 ## Getting Started
@@ -22,7 +22,7 @@ This project demonstrates building a gRPC service with comprehensive CRUD functi
 ### Prerequisites
 
 - .NET 10 SDK or later
-- Node.js 18+ (for frontend development)
+- Node.js 22+ (for frontend development)
 - Docker (optional, for containerized frontend deployment)
 
 ### Backend (gRPC Service)

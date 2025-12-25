@@ -9,6 +9,12 @@ A modern Nuxt.js frontend for the gRPC ToDo service with a dark green, dark, and
 - ⚡ Built with Nuxt 4 and Vue 3
 - 🔄 Real-time task status updates (NEW, IN PROGRESS, COMPLETED)
 - 📱 Responsive design
+- 🐳 Docker support with Node.js 22 Alpine for optimized production builds
+
+## Prerequisites
+
+- Node.js 22+ (for local development)
+- Docker (optional, for containerized deployment)
 
 ## Setup
 
