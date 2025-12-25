@@ -8,7 +8,20 @@ builder.Services.AddDbContext<AppDbContext>(opt => opt.UseSqlite("Data Source=To
 
 builder.Services.AddGrpc().AddJsonTranscoding();
 
+// Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", policy =>
+    {
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
+
+app.UseCors("AllowFrontend");
 
 app.MapGrpcService<GreeterService>();
 app.MapGrpcService<ToDoService>();
