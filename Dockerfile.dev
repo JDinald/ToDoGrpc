@@ -1,5 +1,5 @@
 # Development Dockerfile for .NET backend
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:10.0
 
 WORKDIR /app
 
@@ -7,15 +7,8 @@ WORKDIR /app
 COPY *.csproj ./
 RUN dotnet restore
 
-# Copy everything else and build
+# Copy everything else
 COPY . ./
-RUN dotnet build -c Debug -o /app/build
-
-FROM mcr.microsoft.com/dotnet/sdk:10.0 AS development
-WORKDIR /app
-
-# Copy the build output
-COPY --from=build /app /app
 
 # Expose ports
 EXPOSE 5225
@@ -26,4 +19,4 @@ ENV ASPNETCORE_ENVIRONMENT=Development
 ENV ASPNETCORE_URLS=http://+:5225
 
 # Run the application with hot reload
-ENTRYPOINT ["dotnet", "watch", "run", "--no-restore", "--urls", "http://0.0.0.0:5225"]
+CMD ["dotnet", "watch", "run", "--no-restore", "--urls", "http://0.0.0.0:5225"]

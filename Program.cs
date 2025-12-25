@@ -13,9 +13,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowFrontend", policy =>
     {
-        policy.WithOrigins("http://localhost:3000")
+        policy.WithOrigins(
+                "http://localhost:3000",           // For local development
+                "http://frontend:3000",            // For Docker network
+                "http://todo-frontend-dev:3000"    // For Docker container name
+              )
               .AllowAnyHeader()
-              .AllowAnyMethod();
+              .AllowAnyMethod()
+              .SetIsOriginAllowedToAllowWildcardSubdomains();
     });
 });
 

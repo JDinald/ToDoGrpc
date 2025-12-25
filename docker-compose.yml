@@ -10,11 +10,17 @@ services:
       - "5225:5225"
       - "7101:7101"
     volumes:
-      # Mount source code for hot reload
-      - .:/app
-      # Preserve build outputs
-      - /app/bin
-      - /app/obj
+      # Mount only source files, not build artifacts
+      - ./Data:/app/Data
+      - ./Models:/app/Models
+      - ./Protos:/app/Protos
+      - ./Properties:/app/Properties
+      - ./Services:/app/Services
+      - ./google:/app/google
+      - ./Program.cs:/app/Program.cs
+      - ./appsettings.json:/app/appsettings.json
+      - ./appsettings.Development.json:/app/appsettings.Development.json
+      - ./ToDoDatabase.db:/app/ToDoDatabase.db
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:5225
