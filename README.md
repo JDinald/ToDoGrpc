@@ -64,21 +64,37 @@ npm run dev
 
 The frontend will be available at http://localhost:3000
 
-#### Option 2: Docker (Production)
+#### Option 2: Docker Development (with Hot Reload)
 
-1. Using Docker Compose (from project root):
+Run frontend in Docker with live code reloading:
+
 ```bash
-docker-compose up -d
+# From project root
+docker-compose up --build
+
+# This will:
+# - Rebuild the container on each start
+# - Mount your code as volumes for instant changes
+# - Run in development mode with hot-reload
 ```
 
-2. Or using Docker directly (from frontend directory):
+The frontend will be available at http://localhost:3000
+
+**Note:** The container automatically rebuilds when you run `docker-compose up --build`, so any code changes are reflected immediately without rebuilding.
+
+#### Option 3: Docker Production
+
+For production deployment:
+
 ```bash
+# From project root
+docker-compose -f docker-compose.prod.yml up --build -d
+
+# Or using Docker directly (from frontend directory):
 cd frontend
 docker build -t todo-frontend .
 docker run -p 3000:3000 -e API_BASE_URL=http://localhost:5225 todo-frontend
 ```
-
-The frontend will be available at http://localhost:3000
 
 ## API Endpoints
 

@@ -45,33 +45,33 @@ npm run preview
 
 ## Docker Deployment
 
-### Option 1: Using Docker Compose (Recommended)
+### Development Mode (with Hot Reload)
 
-1. Build and run the container:
+Perfect for development with live code changes:
+
 ```bash
-docker-compose up -d
+# Build and run in development mode with hot reload
+docker-compose up --build
+
+# Changes to your code will be reflected immediately
+# No need to rebuild the container
 ```
 
-2. Stop the container:
+Stop the container:
 ```bash
 docker-compose down
 ```
 
-### Option 2: Using Docker directly
+### Production Mode
 
-1. Build the Docker image:
-```bash
-docker build -t todo-frontend .
-```
+For optimized production builds:
 
-2. Run the container:
 ```bash
+# Build production image
+docker build -t todo-frontend -f Dockerfile .
+
+# Run production container
 docker run -p 3000:3000 -e API_BASE_URL=http://localhost:5225 todo-frontend
-```
-
-3. Stop the container:
-```bash
-docker stop todo-frontend
 ```
 
 The frontend will be available at `http://localhost:3000`
@@ -80,7 +80,7 @@ The frontend will be available at `http://localhost:3000`
 
 You can configure the following environment variables:
 - `API_BASE_URL` - Backend API URL (default: http://localhost:5225)
-- `NODE_ENV` - Node environment (default: production)
+- `NODE_ENV` - Node environment (development or production)
 
 ## Color Scheme
 
