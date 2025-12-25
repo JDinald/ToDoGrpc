@@ -1,24 +1,36 @@
 **gRPC Service with JSON Transcoding + Nuxt Frontend**
 
 **Overview**
-This project demonstrates building a gRPC service with comprehensive CRUD functionalities, including Create, Read (single), List (multiple), Update, and Delete methods. Leveraging the new JSON transcoding feature in .NET 7, the service is made accessible as a REST-based API, enabling web-based endpoints to consume it. The project includes a modern Nuxt.js frontend with a beautiful dark green, dark, and gold color scheme.
+This project demonstrates building a gRPC service with comprehensive CRUD functionalities, including Create, Read (single), List (multiple), Update, and Delete methods. Built with .NET 10 and leveraging the JSON transcoding feature, the service is made accessible as a REST-based API, enabling web-based endpoints to consume it. The project includes a modern Nuxt.js frontend with a beautiful dark green, dark, and gold color scheme.
 
 **Features**
-* gRPC Methods: Implements five fundamental methods:
+* **Built with .NET 10**: Leverages the latest .NET 10 framework with enhanced performance and features
+* **gRPC Methods**: Implements five fundamental methods:
   * Create: Add new entries.
   * Read (single): Retrieve a specific entry.
   * List (multiple): Fetch multiple entries.
   * Update: Modify an existing entry.
   * Delete: Remove an entry.
-* JSON Transcoding in .NET 7: Utilizes the JSON transcoding feature introduced in .NET 7 to transcode between gRPC and RESTful calls seamlessly.
-* Dual-Protocol Support: Offers simultaneous support for both gRPC and REST clients, ensuring broad compatibility and accessibility.
-* Modern Frontend: Nuxt.js-based UI with dark green, dark, and gold theme for an elegant user experience.
+* **JSON Transcoding**: Utilizes the JSON transcoding feature to transcode between gRPC and RESTful calls seamlessly
+* **Dual-Protocol Support**: Offers simultaneous support for both gRPC and REST clients, ensuring broad compatibility and accessibility
+* **Modern Frontend**: Nuxt 4 UI with dark green, dark, and gold theme for an elegant user experience
+* **CORS Enabled**: Configured to allow cross-origin requests from the frontend
 
 ## Getting Started
 
+### Prerequisites
+
+- .NET 10 SDK or later
+- Node.js 18+ (for frontend)
+
 ### Backend (gRPC Service)
 
-1. Run the gRPC service:
+1. Restore dependencies:
+```bash
+dotnet restore
+```
+
+2. Run the gRPC service:
 ```bash
 dotnet run
 ```
