@@ -1,6 +1,27 @@
 version: '3.8'
 
 services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: todo-backend-dev
+    ports:
+      - "5225:5225"
+      - "7101:7101"
+    volumes:
+      # Mount source code for hot reload
+      - .:/app
+      # Preserve build outputs
+      - /app/bin
+      - /app/obj
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:5225
+    networks:
+      - todo-network
+    restart: unless-stopped
+
   frontend:
     build:
       context: ./frontend
@@ -16,13 +37,13 @@ services:
       # Prevent .nuxt from being overwritten
       - /app/.nuxt
     environment:
-      - API_BASE_URL=http://host.docker.internal:5225
+      - API_BASE_URL=http://backend:5225
       - NODE_ENV=development
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    restart: unless-stopped
+    depends_on:
+      - backend
     networks:
       - todo-network
+    restart: unless-stopped
 
 networks:
   todo-network:

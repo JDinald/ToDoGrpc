@@ -16,84 +16,72 @@ This project demonstrates building a gRPC service with comprehensive CRUD functi
 * **JSON Transcoding**: Utilizes the JSON transcoding feature to transcode between gRPC and RESTful calls seamlessly
 * **Dual-Protocol Support**: Offers simultaneous support for both gRPC and REST clients, ensuring broad compatibility and accessibility
 * **Modern Frontend**: Nuxt 4 UI with dark green, dark, and gold theme for an elegant user experience
-* **Docker Support**: Frontend ready for containerized deployment with multi-stage builds using Node.js 22 Alpine
+* **Full Docker Support**: Complete containerized deployment with backend and frontend
+  * Development mode with hot-reload for both services
+  * Production-ready multi-stage builds
+  * Single command to run entire stack
 * **CORS Enabled**: Configured to allow cross-origin requests from the frontend
 
 ## Getting Started
 
 ### Prerequisites
 
+**For local development:**
 - .NET 10 SDK or later
 - Node.js 22+ (for frontend development)
-- Docker (optional, for containerized frontend deployment)
 
-### Backend (gRPC Service)
+**For Docker:**
+- Docker and Docker Compose
 
-1. Restore dependencies:
-```bash
-dotnet restore
-```
+### Option 1: Docker (Recommended for Development)
 
-2. Run the gRPC service:
-```bash
-dotnet run
-```
-
-The service will be available at:
-- HTTPS: https://localhost:7101
-- HTTP: http://localhost:5225
-
-### Frontend (Nuxt.js)
-
-#### Option 1: Development Mode
-
-1. Navigate to the frontend directory:
-```bash
-cd frontend
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-The frontend will be available at http://localhost:3000
-
-#### Option 2: Docker Development (with Hot Reload)
-
-Run frontend in Docker with live code reloading:
+Run the entire application (backend + frontend) with one command:
 
 ```bash
-# From project root
+# Start both backend and frontend in development mode with hot reload
 docker-compose up --build
 
 # This will:
-# - Rebuild the container on each start
-# - Mount your code as volumes for instant changes
-# - Run in development mode with hot-reload
+# - Build and run the .NET backend (port 5225)
+# - Build and run the Nuxt frontend (port 3000)
+# - Enable hot-reload for both services
+# - Create a shared network for communication
 ```
 
-The frontend will be available at http://localhost:3000
+**Access the application:**
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:5225/v1/todo
 
-**Note:** The container automatically rebuilds when you run `docker-compose up --build`, so any code changes are reflected immediately without rebuilding.
+**Stop the application:**
+```bash
+docker-compose down
+```
 
-#### Option 3: Docker Production
+### Option 2: Local Development (Manual)
 
-For production deployment:
+**Backend:**
+```bash
+dotnet restore
+dotnet run
+```
+Backend will be available at http://localhost:5225
+
+**Frontend:**
+```bash
+cd frontend
+npm install
+npm run dev
+```
+Frontend will be available at http://localhost:3000
+
+### Production Deployment
 
 ```bash
-# From project root
+# Build and run in production mode
 docker-compose -f docker-compose.prod.yml up --build -d
 
-# Or using Docker directly (from frontend directory):
-cd frontend
-docker build -t todo-frontend .
-docker run -p 3000:3000 -e API_BASE_URL=http://localhost:5225 todo-frontend
+# Stop production containers
+docker-compose -f docker-compose.prod.yml down
 ```
 
 ## API Endpoints

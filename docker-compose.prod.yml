@@ -1,6 +1,20 @@
 version: '3.8'
 
 services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: todo-backend-prod
+    ports:
+      - "5225:5225"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=http://+:5225
+    networks:
+      - todo-network
+    restart: unless-stopped
+
   frontend:
     build:
       context: ./frontend
@@ -9,13 +23,13 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - API_BASE_URL=http://host.docker.internal:5225
+      - API_BASE_URL=http://backend:5225
       - NODE_ENV=production
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
-    restart: unless-stopped
+    depends_on:
+      - backend
     networks:
       - todo-network
+    restart: unless-stopped
 
 networks:
   todo-network:
