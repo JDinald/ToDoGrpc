@@ -5,7 +5,8 @@ This project demonstrates building a gRPC service with comprehensive CRUD functi
 
 **Features**
 * **Built with .NET 10**: Leverages the latest .NET 10 framework with enhanced performance and features
-* **Entity Framework Core 10.0.3**: Latest SQLite provider for robust data persistence
+* **Entity Framework Core 10.0.1**: Latest SQLite provider for robust data persistence
+* **gRPC 2.76.0**: Latest gRPC AspNetCore with JSON transcoding support
 * **gRPC Methods**: Implements five fundamental methods:
   * Create: Add new entries.
   * Read (single): Retrieve a specific entry.
