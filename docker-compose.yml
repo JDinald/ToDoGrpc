@@ -43,7 +43,8 @@ services:
       # Prevent .nuxt from being overwritten
       - /app/.nuxt
     environment:
-      - API_BASE_URL=http://backend:5225
+      # Use localhost because browser makes API calls from host machine
+      - API_BASE_URL=http://localhost:5225
       - NODE_ENV=development
     depends_on:
       - backend
