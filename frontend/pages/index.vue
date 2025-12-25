@@ -36,7 +36,7 @@
             <label class="form-label">Status</label>
             <select v-model="formData.toDoStatus" class="form-select">
               <option value="NEW">New</option>
-              <option value="INPROGRESS">In Progress</option>
+              <option value="IN PROGRESS">In Progress</option>
               <option value="COMPLETED">Completed</option>
             </select>
           </div>
@@ -82,15 +82,15 @@
           v-for="todo in todos"
           :key="todo.id"
           class="todo-item"
-          :class="`status-${todo.toDoStatus.toLowerCase()}`"
+          :class="`status-${todo.toDoStatus.toLowerCase().replace(/\s+/g, '-')}`"
         >
           <div class="todo-header">
             <h3 class="todo-title">{{ todo.title }}</h3>
             <span
               class="status-badge"
-              :class="`status-${todo.toDoStatus.toLowerCase()}`"
+              :class="`status-${todo.toDoStatus.toLowerCase().replace(/\s+/g, '-')}`"
             >
-              {{ formatStatus(todo.toDoStatus) }}
+              {{ todo.toDoStatus }}
             </span>
           </div>
 
@@ -243,10 +243,6 @@ const handleDelete = async (id: number) => {
     error.value = 'Failed to delete task'
     console.error(err)
   }
-}
-
-const formatStatus = (status: string): string => {
-  return status.replace('INPROGRESS', 'IN PROGRESS')
 }
 </script>
 

@@ -2,7 +2,7 @@ export interface ToDoItem {
   id: number
   title: string
   description: string
-  toDoStatus: 'NEW' | 'INPROGRESS' | 'COMPLETED'
+  toDoStatus: 'NEW' | 'IN PROGRESS' | 'COMPLETED'
 }
 
 export interface CreateToDoRequest {

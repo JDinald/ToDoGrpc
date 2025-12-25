@@ -172,7 +172,7 @@ body {
   border-left-color: var(--color-gold);
 }
 
-.todo-item.status-inprogress {
+.todo-item.status-in-progress {
   border-left-color: #3b82f6;
 }
 
@@ -228,7 +228,7 @@ body {
   color: var(--color-dark);
 }
 
-.status-inprogress {
+.status-in-progress {
   background-color: #3b82f6;
   color: white;
 }
