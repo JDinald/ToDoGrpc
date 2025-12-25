@@ -37,6 +37,45 @@ npm run build
 npm run preview
 ```
 
+## Docker Deployment
+
+### Option 1: Using Docker Compose (Recommended)
+
+1. Build and run the container:
+```bash
+docker-compose up -d
+```
+
+2. Stop the container:
+```bash
+docker-compose down
+```
+
+### Option 2: Using Docker directly
+
+1. Build the Docker image:
+```bash
+docker build -t todo-frontend .
+```
+
+2. Run the container:
+```bash
+docker run -p 3000:3000 -e API_BASE_URL=http://localhost:5225 todo-frontend
+```
+
+3. Stop the container:
+```bash
+docker stop todo-frontend
+```
+
+The frontend will be available at `http://localhost:3000`
+
+### Environment Variables
+
+You can configure the following environment variables:
+- `API_BASE_URL` - Backend API URL (default: http://localhost:5225)
+- `NODE_ENV` - Node environment (default: production)
+
 ## Color Scheme
 
 - **Dark Green**: #1a4d2e (Primary accent)

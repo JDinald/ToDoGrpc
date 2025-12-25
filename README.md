@@ -14,6 +14,7 @@ This project demonstrates building a gRPC service with comprehensive CRUD functi
 * **JSON Transcoding**: Utilizes the JSON transcoding feature to transcode between gRPC and RESTful calls seamlessly
 * **Dual-Protocol Support**: Offers simultaneous support for both gRPC and REST clients, ensuring broad compatibility and accessibility
 * **Modern Frontend**: Nuxt 4 UI with dark green, dark, and gold theme for an elegant user experience
+* **Docker Support**: Frontend ready for containerized deployment with multi-stage builds
 * **CORS Enabled**: Configured to allow cross-origin requests from the frontend
 
 ## Getting Started
@@ -21,7 +22,8 @@ This project demonstrates building a gRPC service with comprehensive CRUD functi
 ### Prerequisites
 
 - .NET 10 SDK or later
-- Node.js 18+ (for frontend)
+- Node.js 18+ (for frontend development)
+- Docker (optional, for containerized frontend deployment)
 
 ### Backend (gRPC Service)
 
@@ -41,6 +43,8 @@ The service will be available at:
 
 ### Frontend (Nuxt.js)
 
+#### Option 1: Development Mode
+
 1. Navigate to the frontend directory:
 ```bash
 cd frontend
@@ -54,6 +58,22 @@ npm install
 3. Start the development server:
 ```bash
 npm run dev
+```
+
+The frontend will be available at http://localhost:3000
+
+#### Option 2: Docker (Production)
+
+1. Using Docker Compose (from project root):
+```bash
+docker-compose up -d
+```
+
+2. Or using Docker directly (from frontend directory):
+```bash
+cd frontend
+docker build -t todo-frontend .
+docker run -p 3000:3000 -e API_BASE_URL=http://localhost:5225 todo-frontend
 ```
 
 The frontend will be available at http://localhost:3000
