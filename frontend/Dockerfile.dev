@@ -1,21 +1,25 @@
 # Development Dockerfile for Nuxt.js frontend with hot-reload
 FROM node:22-alpine
 
+# Set working directory
 WORKDIR /app
 
+# Copy package files
+COPY package.json package-lock.json* ./
+
 # Install dependencies
-COPY package*.json ./
 RUN npm install
 
-# Copy source code (will be overridden by volume mount)
+# Copy application code (will be overridden by volume mount in docker-compose)
 COPY . .
 
-# Expose the port
+# Expose port
 EXPOSE 3000
 
-# Set environment for development
+# Set environment variables
 ENV HOST=0.0.0.0
 ENV PORT=3000
+ENV NODE_ENV=development
 
-# Run in development mode with hot-reload
-CMD ["npm", "run", "dev"]
+# Start development server
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
